@@ -25,7 +25,7 @@ class Command(BaseCommand):
         password = PASSWORD
 
         if UserModel.objects.filter(username__iexact=username, email__iexact=email).exists():
-            raise CommandError("User already exists.")
-        
-        UserModel.objects.create_superuser(username, email, password)
-        self.stdout.write(self.style.SUCCESS("User create successfully"))
+            print("user already")
+        else:
+            UserModel.objects.create_superuser(username, email, password)
+            self.stdout.write(self.style.SUCCESS("User create successfully"))
